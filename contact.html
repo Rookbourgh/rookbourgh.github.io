@@ -16,64 +16,99 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
   }
 
   .contact-widget {
-    max-width: 400px;
-    margin: 50px auto;
+    width: 90%;
+    max-width: 500px;
     background-color: var(--ec-blue);
     color: var(--text-light);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    padding: 30px 25px;
+    box-sizing: border-box;
+    margin: 20px;
+    transition: transform 0.2s ease;
+  }
+
+  /* Optional: kleine Animation beim Hover über das gesamte Widget */
+  .contact-widget:hover {
+    transform: translateY(-3px);
   }
 
   .contact-widget h2 {
     color: var(--ec-gold);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
   }
 
   .contact-widget label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
+    font-size: 1rem;
   }
 
   .contact-widget input,
   .contact-widget textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--ec-gold);
-    border-radius: 6px;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 2px solid var(--ec-gold);
+    border-radius: 8px;
     background-color: var(--text-light);
     color: var(--text-dark);
-    font-size: 14px;
+    font-size: 1rem;
+    box-sizing: border-box;
   }
 
   .contact-widget button {
     width: 100%;
-    padding: 12px;
+    padding: 16px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: var(--ec-gold);
     color: var(--text-light);
-    font-size: 16px;
+    font-size: 1.2rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
 
   .contact-widget button:hover {
     background-color: #a07a00;
+    transform: scale(1.05);
   }
 
   .success-message {
     display: none;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
     color: var(--ec-gold);
     font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  /* Responsive Anpassungen */
+  @media (max-width: 600px) {
+    .contact-widget {
+      padding: 25px 15px;
+    }
+
+    .contact-widget h2 {
+      font-size: 1.5rem;
+    }
+
+    .contact-widget input,
+    .contact-widget textarea,
+    .contact-widget button {
+      font-size: 1rem;
+      padding: 12px;
+    }
   }
 </style>
 </head>
@@ -81,7 +116,6 @@
 
 <div class="contact-widget">
   <h2>Kontakt</h2>
-  <!-- Formspree-Formular -->
   <form id="contactForm" action="https://formspree.io/f/xwpapwal" method="POST">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" required>
@@ -90,7 +124,7 @@
     <input type="email" id="email" name="email" required>
 
     <label for="message">Nachricht</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+    <textarea id="message" name="message" rows="6" required></textarea>
 
     <button type="submit">Absenden</button>
   </form>
@@ -103,22 +137,16 @@
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    // Formular über Formspree absenden
     const data = new FormData(form);
     fetch(form.action, {
       method: 'POST',
       body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
+      headers: { 'Accept': 'application/json' }
     }).then(response => {
       if (response.ok) {
         form.reset();
         successMessage.style.display = 'block';
-        setTimeout(() => {
-          successMessage.style.display = 'none';
-        }, 5000);
+        setTimeout(() => { successMessage.style.display = 'none'; }, 5000);
       } else {
         alert("Es gab ein Problem beim Absenden. Bitte versuchen Sie es erneut.");
       }
