@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EuropaCraft Serverstatus</title>
+  <style>
+    :root {
+      --ec-gold: #d4af37;
+      --ec-blue: #1d4e89;
+      --ec-white: #f9f9fb;
+    }
+
+    body {
+      background: transparent;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 40px 0;
+    }
+
+    .ec-inner {
+      background: var(--ec-gold);
+      border: 3px solid var(--ec-blue);
+      border-radius: 14px;
+      padding: 25px 35px;
+      width: 360px;
+      margin: auto;
+      color: var(--ec-blue);
+      box-shadow: 0 0 15px rgba(29, 78, 137, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .ec-ip {
+      background: var(--ec-blue);
+      color: var(--ec-white);
+      padding: 6px 14px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: inline-block;
+      font-family: monospace;
+    }
+
+    .ec-status {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .online { color: #146b3a; }
+    .offline { color: #b02a37; }
+
+    .ec-count {
+      color: var(--ec-blue);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .ec-player-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .ec-player {
+      background: rgba(255,255,255,0.3);
+      border-radius: 6px;
+      padding: 3px 7px;
+      display: flex;
+      align-items: center;
+    }
+
+    .ec-player img {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+
+    .ec-btn {
+      background: var(--ec-blue);
+      color: var(--ec-white);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .ec-update {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="ec-inner">
+    <div class="ec-ip">play.europa-craft.de</div>
+    <p id="status" class="ec-status">⏳ Lade Serverstatus...</p>
+    <p id="players-count" class="ec-count"></p>
+    <div id="player-list" class="ec-player-list"></div>
+    <button class="ec-btn" onclick="navigator.clipboard.writeText('play.europa-craft.de')">📋 IP kopieren</button>
+    <p class="ec-update">Letzte Aktualisierung: <span id="last-update">--:--</span></p>
+  </div>
+
+  <script>
+    const server = "play.europa-craft.de";
+    const statusText = document.getElementById("status");
+    const playerCount = document.getElementById("players-count");
+    const playerList = document.getElementById("player-list");
+    const lastUpdate = document.getElementById("last-update");
+
+    async function updateStatus() {
+      try {
+        const res = await fetch(`https://api.mcsrvstat.us/2/${server}`);
+        const data = await res.json();
+        const now = new Date();
+        lastUpdate.textContent = now.toLocaleTimeString();
+
+        if (!data.online) {
+          statusText.textContent = "🟥 Server offline";
+          statusText.className = "ec-status offline";
+          playerCount.textContent = "";
+          playerList.innerHTML = "";
+          return;
+        }
+
+        statusText.textContent = "🟩 Server online!";
+        statusText.className = "ec-status online";
+
+        const online = data.players.online || 0;
+        const max = data.players.max || "?";
+        playerCount.textContent = `${online} / ${max} Spieler online`;
+
+        if (data.players.list && data.players.list.length > 0) {
+          playerList.innerHTML = data.players.list.map(p => `
+            <div class="ec-player">
+              <img src="https://mc-heads.net/avatar/${encodeURIComponent(p)}/28" alt="${p}">
+              ${p}
+            </div>
+          `).join("");
+        } else {
+          playerList.innerHTML = `<p style="width:100%;color:#444;">Keine Spieler online 💤</p>`;
+        }
+      } catch (err) {
+        statusText.textContent = "⚠️ Fehler beim Abrufen.";
+        statusText.className = "ec-status offline";
+      }
+    }
+
+    updateStatus();
+    setInterval(updateStatus, 30000);
+  </script>
+</body>
+</html>
