@@ -49,11 +49,28 @@
   .ec-card:hover{ transform: translateY(-4px); box-shadow: 0 16px 55px rgba(5,8,20,0.65), 0 0 40px rgba(128,97,0,0.12); }
 
   /* gold frame (thin) */
-  .ec-frame {
-    position:absolute; inset:6px; border-radius:14px; pointer-events:none;
-    box-shadow: 0 0 18px rgba(128,97,0,0.14) inset;
-    border: 2px solid rgba(212,170,80,0.14);
-  }
+ .ec-frame {
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  pointer-events: none;
+
+  /* Rahmenfarbe */
+  border: 3px solid rgb(128, 97, 0);
+
+  /* äußerer Glow */
+  box-shadow: 
+      0 0 12px rgba(128, 97, 0, 0.65),
+      0 0 22px rgba(128, 97, 0, 0.45),
+      0 0 40px rgba(128, 97, 0, 0.25);
+
+  /* innerer Schimmer */
+  background: linear-gradient(
+      rgba(255, 225, 150, 0.05),
+      rgba(128, 97, 0, 0.05)
+  );
+}
+
 
   /* stars (decor) */
   .stars { position:absolute; inset:0; pointer-events:none; }
@@ -177,6 +194,8 @@
 </style>
 </head>
 <body>
+<input id="copyHidden" type="text" value="play.europa-craft.de" 
+       style="position:absolute;opacity:0;pointer-events:none;height:0;width:0;border:0;padding:0;margin:0;">
   <div class="wrap">
     <div class="ec-card" id="ec-card" role="region" aria-label="EuropaCraft Proxy Status">
       <div class="ec-frame" aria-hidden="true"></div>
@@ -224,12 +243,34 @@ const copyBtn = document.getElementById('copyBtn');
 const refreshBtn = document.getElementById('refreshBtn');
 
 /* copy action */
-copyBtn.addEventListener('click', ()=> {
-  navigator.clipboard?.writeText(SERVER).then(()=> {
+copyBtn.addEventListener('click', () => {
+  const hidden = document.getElementById('copyHidden');
+  hidden.value = SERVER;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(SERVER).then(() => {
+      copyBtn.textContent = "✅ Kopiert";
+      setTimeout(() => copyBtn.textContent = "📋 IP kopieren", 1500);
+    }).catch(() => {
+      // Fallback, wenn Clipboard API in iFrame blockiert ist
+      hidden.select();
+      hidden.setSelectionRange(0, SERVER.length);
+      document.execCommand("copy");
+
+      copyBtn.textContent = "✅ Kopiert";
+      setTimeout(() => copyBtn.textContent = "📋 IP kopieren", 1500);
+    });
+  } else {
+    // Nur Fallback
+    hidden.select();
+    hidden.setSelectionRange(0, SERVER.length);
+    document.execCommand("copy");
+
     copyBtn.textContent = "✅ Kopiert";
-    setTimeout(()=> copyBtn.textContent = "📋 IP kopieren", 1500);
-  }).catch(()=> alert('Kopieren fehlgeschlagen.'));
+    setTimeout(() => copyBtn.textContent = "📋 IP kopieren", 1500);
+  }
 });
+
 
 /* refresh action */
 refreshBtn.addEventListener('click', ()=> { update(); });
