@@ -1,0 +1,61 @@
+<!-- EP‑Club Widget (inspiriert von EPM Club) -->
+<div id="ep-club-widget" style="max-width: 800px; margin: auto; font-family: sans-serif; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <div style="background-color: #243e6c; color: white; padding: 20px; text-align: center;">
+    <h2 style="margin: 0;">EP Club – Minecraft VIP</h2>
+    <p style="margin: 5px 0 0;">Wähle deine Mitgliedschaft</p>
+  </div>
+
+  <div style="display: flex; justify-content: center; background-color: #f1f3f5;">
+    <button class="tab-button" data-tab="silver" style="flex:1; padding: 15px; cursor: pointer; border: none; background: none; font-size: 1em;">Silber</button>
+    <button class="tab-button" data-tab="gold" style="flex:1; padding: 15px; cursor: pointer; border: none; background: none; font-size: 1em;">Gold</button>
+  </div>
+
+  <div class="tab-content" id="tab-silver" style="display: none; padding: 20px; background: white;">
+    <h3 style="color: #888;">Silber-Mitgliedschaft</h3>
+    <p style="font-size: 1.2em; font-weight: bold;">15 €/Monat</p>
+    <ul>
+      <li>Teleportation zu Attraktionen</li>
+      <li>Fliegen im Park</li>
+      <li>Kontrolle von Attraktionen (z. B. Showaktivierung)</li>
+      <li>Exklusive Items & Souvenirs</li>
+      <li>Chat-Tag „Silber-Mitglied“</li>
+      <li>Extra Spielboni (Coins / XP)</li>
+    </ul>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="#" style="padding: 10px 20px; background: #888; color: white; text-decoration: none; border-radius: 4px;">Jetzt Silber wählen</a>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-gold" style="display: none; padding: 20px; background: white;">
+    <h3 style="color: #b38f00;">Gold-Mitgliedschaft</h3>
+    <p style="font-size: 1.2em; font-weight: bold;">30 €/Monat</p>
+    <ul>
+      <li>Alle Silber-Vorteile</li>
+      <li>Volle Attraktionssteuerung (Achterbahnen, Shows …)</li>
+      <li>Schnelleres und höheres Fliegen</li>
+      <li>Teleport überall (auch VIP-Lounge)</li>
+      <li>Exklusive Skins & Items</li>
+      <li>Zugang zu privatem VIP-Bereich</li>
+      <li>Stärkere Gameplay-Boni</li>
+    </ul>
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="#" style="padding: 10px 20px; background: #b38f00; color: black; text-decoration: none; border-radius: 4px;">Jetzt Gold wählen</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // kleines JS, um zwischen Tabs zu wechseln
+  document.querySelectorAll('#ep-club-widget .tab-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab');
+      document.querySelectorAll('#ep-club-widget .tab-content').forEach(tc => tc.style.display = 'none');
+      document.getElementById('tab-' + tab).style.display = 'block';
+      // Aktiven Button hervorheben
+      document.querySelectorAll('#ep-club-widget .tab-button').forEach(b => b.style.background = 'none');
+      btn.style.background = '#e0e0e0';
+    });
+  });
+  // Standard: Silber anzeigen
+  document.querySelector('button[data-tab="silver"]').click();
+</script>
