@@ -1,0 +1,66 @@
+.mc-box {
+    width: 420px;
+    margin: 40px auto;
+    background: rgb(128, 97, 0);
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    color: white;
+
+    box-shadow: 0 0 22px rgba(128, 97, 0, 0.65),
+                inset 0 0 8px rgba(255, 255, 255, 0.25);
+
+    border: 2px solid rgba(255, 220, 120, 0.4);
+}
+
+.mc-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 6px rgba(255,255,255,0.5);
+}
+
+.mc-online {
+    font-size: 20px;
+    background: #00ffae;
+    color: black;
+    padding: 6px 0;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.mc-offline {
+    font-size: 20px;
+    background: #ff4d4d;
+    color: white;
+    padding: 6px 0;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.mc-playercount {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.mc-playerlist {
+    max-height: 120px;
+    overflow-y: auto;
+    background: rgba(255,255,255,0.15);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.player {
+    padding: 4px 0;
+    font-size: 16px;
+}
+
+.no-players {
+    opacity: 0.8;
+    font-size: 16px;
+}
