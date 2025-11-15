@@ -1,61 +1,182 @@
-<!-- EP‑Club Widget (inspiriert von EPM Club) -->
-<div id="ep-club-widget" style="max-width: 800px; margin: auto; font-family: sans-serif; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-  <div style="background-color: #243e6c; color: white; padding: 20px; text-align: center;">
-    <h2 style="margin: 0;">EP Club – Minecraft VIP</h2>
-    <p style="margin: 5px 0 0;">Wähle deine Mitgliedschaft</p>
-  </div>
-
-  <div style="display: flex; justify-content: center; background-color: #f1f3f5;">
-    <button class="tab-button" data-tab="silver" style="flex:1; padding: 15px; cursor: pointer; border: none; background: none; font-size: 1em;">Silber</button>
-    <button class="tab-button" data-tab="gold" style="flex:1; padding: 15px; cursor: pointer; border: none; background: none; font-size: 1em;">Gold</button>
-  </div>
-
-  <div class="tab-content" id="tab-silver" style="display: none; padding: 20px; background: white;">
-    <h3 style="color: #888;">Silber-Mitgliedschaft</h3>
-    <p style="font-size: 1.2em; font-weight: bold;">15 €/Monat</p>
-    <ul>
-      <li>Teleportation zu Attraktionen</li>
-      <li>Fliegen im Park</li>
-      <li>Kontrolle von Attraktionen (z. B. Showaktivierung)</li>
-      <li>Exklusive Items & Souvenirs</li>
-      <li>Chat-Tag „Silber-Mitglied“</li>
-      <li>Extra Spielboni (Coins / XP)</li>
-    </ul>
-    <div style="text-align: center; margin-top: 20px;">
-      <a href="#" style="padding: 10px 20px; background: #888; color: white; text-decoration: none; border-radius: 4px;">Jetzt Silber wählen</a>
+<!-- ===== EP CLUB WIDGET ===== -->
+<div id="ep-club-widget">
+    
+    <!-- TAB-BAR -->
+    <div class="ep-tabs">
+        <div class="ep-tab active" data-tab="silver">Resort Pass Silber</div>
+        <div class="ep-tab" data-tab="gold">Resort Pass Gold</div>
     </div>
-  </div>
 
-  <div class="tab-content" id="tab-gold" style="display: none; padding: 20px; background: white;">
-    <h3 style="color: #b38f00;">Gold-Mitgliedschaft</h3>
-    <p style="font-size: 1.2em; font-weight: bold;">30 €/Monat</p>
-    <ul>
-      <li>Alle Silber-Vorteile</li>
-      <li>Volle Attraktionssteuerung (Achterbahnen, Shows …)</li>
-      <li>Schnelleres und höheres Fliegen</li>
-      <li>Teleport überall (auch VIP-Lounge)</li>
-      <li>Exklusive Skins & Items</li>
-      <li>Zugang zu privatem VIP-Bereich</li>
-      <li>Stärkere Gameplay-Boni</li>
-    </ul>
-    <div style="text-align: center; margin-top: 20px;">
-      <a href="#" style="padding: 10px 20px; background: #b38f00; color: black; text-decoration: none; border-radius: 4px;">Jetzt Gold wählen</a>
+    <!-- SILBER -->
+    <div class="ep-content" id="ep-silver" style="display:block;">
+        <div class="ep-card" style="background-image:url('YOUR_SILVER_IMAGE_URL');">
+            <div class="ep-overlay"></div>
+            <div class="ep-inner">
+                <h2>RESORT PASS SILBER</h2>
+                <p class="ep-price">15 € / Monat</p>
+
+                <ul class="ep-list">
+                    <li>✔ Teleportation im ganzen Park</li>
+                    <li>✔ Fliegen in bestimmten Bereichen</li>
+                    <li>✔ Steuerung kleiner Attraktionen (Showlichter, Wasserfälle)</li>
+                    <li>✔ Exklusive Items & kosmetische Belohnungen</li>
+                    <li>✔ Silber-Rang im Chat</li>
+                    <li>✔ Monatliche EP-Coins</li>
+                </ul>
+
+                <a class="ep-btn ep-silver-btn" href="#">Silber auswählen</a>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <!-- GOLD -->
+    <div class="ep-content" id="ep-gold">
+        <div class="ep-card" style="background-image:url('YOUR_GOLD_IMAGE_URL');">
+            <div class="ep-overlay"></div>
+            <div class="ep-inner">
+                <h2>RESORT PASS GOLD</h2>
+                <p class="ep-price">30 € / Monat</p>
+
+                <ul class="ep-list">
+                    <li>✔ Alle Silber-Vorteile</li>
+                    <li>✔ Komplette Attraktionssteuerung (Achterbahnen, Shows etc.)</li>
+                    <li>✔ VIP-Flugmodus</li>
+                    <li>✔ Teleport in exklusive VIP-Lounge</li>
+                    <li>✔ Gold-Rang + kosmetische Premium-Items</li>
+                    <li>✔ Monatliche EP-Coins (erhöht)</li>
+                </ul>
+
+                <a class="ep-btn ep-gold-btn" href="#">Gold auswählen</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<!-- ===== STYLE ===== -->
+<style>
+#ep-club-widget {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 30px auto;
+    color: white;
+}
+
+/* Tabs */
+.ep-tabs {
+    display: flex;
+    background: #0e1530;
+    border-bottom: 3px solid #1d2442;
+}
+.ep-tab {
+    flex: 1;
+    text-align: center;
+    padding: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+    color: #cfd5e4;
+}
+.ep-tab.active {
+    color: white;
+    border-bottom: 3px solid #e6b800;
+}
+
+/* Card */
+.ep-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 40px;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+}
+.ep-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
+.ep-inner {
+    position: relative;
+    z-index: 2;
+}
+.ep-inner h2 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+.ep-price {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* List */
+.ep-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+.ep-list li {
+    margin-bottom: 12px;
+    font-size: 1.1em;
+}
+
+/* Buttons */
+.ep-btn {
+    padding: 14px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+.ep-silver-btn {
+    background: #c0c0c0;
+    color: black;
+}
+.ep-silver-btn:hover {
+    background: #aaaaaa;
+}
+.ep-gold-btn {
+    background: #e6b800;
+    color: black;
+}
+.ep-gold-btn:hover {
+    background: #cfa200;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .ep-card {
+        padding: 25px;
+        min-height: 380px;
+    }
+    .ep-inner h2 {
+        font-size: 1.8em;
+    }
+    .ep-price {
+        font-size: 1.4em;
+    }
+}
+</style>
+
+<!-- ===== JS ===== -->
 <script>
-  // kleines JS, um zwischen Tabs zu wechseln
-  document.querySelectorAll('#ep-club-widget .tab-button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.getAttribute('data-tab');
-      document.querySelectorAll('#ep-club-widget .tab-content').forEach(tc => tc.style.display = 'none');
-      document.getElementById('tab-' + tab).style.display = 'block';
-      // Aktiven Button hervorheben
-      document.querySelectorAll('#ep-club-widget .tab-button').forEach(b => b.style.background = 'none');
-      btn.style.background = '#e0e0e0';
+document.querySelectorAll('.ep-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+
+        document.querySelectorAll('.ep-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        document.querySelectorAll('.ep-content').forEach(c => c.style.display = 'none');
+        document.getElementById('ep-' + tab.dataset.tab).style.display = 'block';
     });
-  });
-  // Standard: Silber anzeigen
-  document.querySelector('button[data-tab="silver"]').click();
+});
 </script>
