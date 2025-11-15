@@ -1,72 +1,29 @@
-<!-- ===== EP CLUB WIDGET ===== -->
-<div id="ep-club-widget">
-    
-    <!-- TAB-BAR -->
-    <div class="ep-tabs">
-        <div class="ep-tab active" data-tab="silver">Resort Pass Silber</div>
-        <div class="ep-tab" data-tab="gold">Resort Pass Gold</div>
-    </div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EP Club Widget</title>
 
-    <!-- SILBER -->
-    <div class="ep-content" id="ep-silver" style="display:block;">
-        <div class="ep-card" style="background-image:url('YOUR_SILVER_IMAGE_URL');">
-            <div class="ep-overlay"></div>
-            <div class="ep-inner">
-                <h2>RESORT PASS SILBER</h2>
-                <p class="ep-price">15 € / Monat</p>
-
-                <ul class="ep-list">
-                    <li>✔ Teleportation im ganzen Park</li>
-                    <li>✔ Fliegen in bestimmten Bereichen</li>
-                    <li>✔ Steuerung kleiner Attraktionen (Showlichter, Wasserfälle)</li>
-                    <li>✔ Exklusive Items & kosmetische Belohnungen</li>
-                    <li>✔ Silber-Rang im Chat</li>
-                    <li>✔ Monatliche EP-Coins</li>
-                </ul>
-
-                <a class="ep-btn ep-silver-btn" href="#">Silber auswählen</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- GOLD -->
-    <div class="ep-content" id="ep-gold">
-        <div class="ep-card" style="background-image:url('YOUR_GOLD_IMAGE_URL');">
-            <div class="ep-overlay"></div>
-            <div class="ep-inner">
-                <h2>RESORT PASS GOLD</h2>
-                <p class="ep-price">30 € / Monat</p>
-
-                <ul class="ep-list">
-                    <li>✔ Alle Silber-Vorteile</li>
-                    <li>✔ Komplette Attraktionssteuerung (Achterbahnen, Shows etc.)</li>
-                    <li>✔ VIP-Flugmodus</li>
-                    <li>✔ Teleport in exklusive VIP-Lounge</li>
-                    <li>✔ Gold-Rang + kosmetische Premium-Items</li>
-                    <li>✔ Monatliche EP-Coins (erhöht)</li>
-                </ul>
-
-                <a class="ep-btn ep-gold-btn" href="#">Gold auswählen</a>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- ===== STYLE ===== -->
 <style>
-#ep-club-widget {
+/* (Der komplette Stil wie vorher) */
+
+body {
+    margin: 0;
+    background: #0b1127;
     font-family: Arial, sans-serif;
+    color: white;
+}
+
+#ep-club-widget {
     max-width: 900px;
     margin: 30px auto;
-    color: white;
 }
 
 /* Tabs */
 .ep-tabs {
     display: flex;
     background: #0e1530;
-    border-bottom: 3px solid #1d2442;
 }
 .ep-tab {
     flex: 1;
@@ -74,17 +31,16 @@
     padding: 18px;
     font-weight: bold;
     cursor: pointer;
-    letter-spacing: 1px;
+    color: #d0d5e3;
     border-bottom: 3px solid transparent;
     transition: 0.3s;
-    color: #cfd5e4;
 }
 .ep-tab.active {
     color: white;
     border-bottom: 3px solid #e6b800;
 }
 
-/* Card */
+/* Cards */
 .ep-card {
     position: relative;
     background-size: cover;
@@ -95,6 +51,7 @@
     min-height: 450px;
     display: flex;
     align-items: center;
+    margin-top: 20px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.35);
 }
 .ep-overlay {
@@ -115,12 +72,9 @@
     font-weight: bold;
     margin-bottom: 25px;
 }
-
-/* List */
 .ep-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 30px;
 }
 .ep-list li {
     margin-bottom: 12px;
@@ -136,6 +90,7 @@
     text-decoration: none;
     display: inline-block;
     transition: 0.3s;
+    margin-top: 30px;
 }
 .ep-silver-btn {
     background: #c0c0c0;
@@ -152,31 +107,90 @@
     background: #cfa200;
 }
 
-/* Responsive */
 @media (max-width: 700px) {
     .ep-card {
         padding: 25px;
         min-height: 380px;
     }
-    .ep-inner h2 {
-        font-size: 1.8em;
-    }
-    .ep-price {
-        font-size: 1.4em;
-    }
 }
 </style>
 
-<!-- ===== JS ===== -->
+</head>
+<body>
+
+<div id="ep-club-widget">
+    
+    <div class="ep-tabs">
+        <div class="ep-tab active" data-tab="silver">Resort Pass Silber</div>
+        <div class="ep-tab" data-tab="gold">Resort Pass Gold</div>
+    </div>
+
+    <!-- Silber -->
+    <div class="ep-content" id="ep-silver" style="display:block;">
+        <div class="ep-card" style="background-image:url('YOUR_SILVER_IMAGE_URL');">
+            <div class="ep-overlay"></div>
+            <div class="ep-inner">
+                <h2>RESORT PASS SILBER</h2>
+                <p class="ep-price">15 € / Monat</p>
+                <ul class="ep-list">
+                    <li>✔ Teleportation im Park</li>
+                    <li>✔ Fliegen in Bereichen</li>
+                    <li>✔ Steuerung kleiner Attraktionen</li>
+                    <li>✔ Exklusive Items</li>
+                    <li>✔ Silber-Rang im Chat</li>
+                    <li>✔ Monatliche EP-Coins</li>
+                </ul>
+                <a href="#" class="ep-btn ep-silver-btn">Silber wählen</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gold -->
+    <div class="ep-content" id="ep-gold" style="display:none;">
+        <div class="ep-card" style="background-image:url('YOUR_GOLD_IMAGE_URL');">
+            <div class="ep-overlay"></div>
+            <div class="ep-inner">
+                <h2>RESORT PASS GOLD</h2>
+                <p class="ep-price">30 € / Monat</p>
+                <ul class="ep-list">
+                    <li>✔ Alle Silber-Vorteile</li>
+                    <li>✔ Komplette Attraktionssteuerung</li>
+                    <li>✔ VIP-Fliegen</li>
+                    <li>✔ VIP-TP-Lounge</li>
+                    <li>✔ Gold-Rang + Premium-Items</li>
+                    <li>✔ Monatliche EP-Coins (erhöht)</li>
+                </ul>
+                <a href="#" class="ep-btn ep-gold-btn">Gold wählen</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <script>
+/* Tab Switch */
 document.querySelectorAll('.ep-tab').forEach(tab => {
     tab.addEventListener('click', () => {
-
         document.querySelectorAll('.ep-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
 
         document.querySelectorAll('.ep-content').forEach(c => c.style.display = 'none');
-        document.getElementById('ep-' + tab.dataset.tab).style.display = 'block';
+        document.querySelector('#ep-' + tab.dataset.tab).style.display = 'block';
+
+        sendHeight();
     });
 });
+
+/* Iframe Auto-Resize */
+function sendHeight() {
+    const height = document.documentElement.scrollHeight;
+    parent.postMessage({ epWidgetHeight: height }, "*");
+}
+
+window.onload = sendHeight;
+window.onresize = sendHeight;
+setInterval(sendHeight, 500);
 </script>
+
+</body>
+</html>
