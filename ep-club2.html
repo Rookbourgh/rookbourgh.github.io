@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EP-Club Widget</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: #f4f6fb;
+      color: #1d2a44;
+    }
+    header {
+      background: linear-gradient(90deg, #0e1a33, #0b1530);
+      padding: 14px 20px;
+      color: white;
+      text-align: center;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+    .hero {
+      position: relative;
+      background: url('IMAGE_URL_HERE') center/cover no-repeat;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 40px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.55);
+    }
+    .hero h1 {
+      font-size: 44px;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+    .section-title {
+      text-align: center;
+      margin: 50px 0 15px;
+      font-size: 30px;
+      font-weight: 700;
+      color: #1d2a44;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      width: 300px;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      text-align: center;
+      transition: 0.25s ease;
+      border: 2px solid #cfd4de;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .card button {
+      background: #0b1530;
+      color: white;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 6px;
+      margin-top: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+    .card button:hover {
+      background: #14254d;
+    }
+    .pricing {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 20px;
+    }
+    .price-box {
+      background: white;
+      width: 320px;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      border: 2px solid #cfd4de;
+      transition: 0.25s ease;
+    }
+    .price-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+    }
+    .price-box h2 {
+      margin: 0;
+      font-size: 26px;
+      text-align: center;
+      color: #0b1530;
+    }
+    .price-number {
+      font-size: 40px;
+      text-align: center;
+      margin: 12px 0;
+      font-weight: 800;
+      color: #0b1530;
+    }
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 15px;
+    }
+    .features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #dfe3ea;
+    }
+    .footer-bar {
+      height: 260px;
+      background: linear-gradient(180deg, #0b1530, #0e1a33);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-bar span {
+      font-size: 48px;
+      color: white;
+    }
+  /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero {
+        height: 300px;
+        padding: 20px;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 32px;
+      }
+      .cards, .pricing {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card, .price-box {
+        width: 90%;
+      }
+    }
+</style>
+</head>
+<body>
+  <header>
+    <h1>EuropaCraft Widget</h1>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Der Club d’EP Resort</h1>
+      <p>Exklusive Vorteile & Mitgliedschaften</p>
+    </div>
+  </section>
+
+  <h2 class="section-title">3 Versionen für 1 Jahr</h2>
+
+  <div class="cards">
+    <div class="card">
+      <img src="IMAGE_CARD1_URL" alt="EP-Club">
+      <h3>EP-Club</h3>
+      <button>Mehr Infos</button>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE_CARD2_URL" alt="EP-Club Silver">
+      <h3>EP-Club Silver</h3>
+      <button>Mehr Infos</button>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE_CARD3_URL" alt="EP-Club Gold">
+      <h3>EP-Club Gold</h3>
+      <button>Mehr Infos</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">Welcher Grad passt zu dir?</h2>
+
+  <div class="pricing">
+    <div class="price-box">
+      <h2>EP-Club</h2>
+      <div class="price-number">12,99 €</div>
+      <ul class="features">
+        <li>Zutritt 1 Jahr</li>
+        <li>Exklusive News</li>
+        <li>Community-Zugang</li>
+      </ul>
+    </div>
+
+    <div class="price-box">
+      <h2>EP-Club Silver</h2>
+      <div class="price-number">17,99 €</div>
+      <ul class="features">
+        <li>Zutritt 1 Jahr</li>
+        <li>Mehr Vorteile</li>
+        <li>Zusätzliche Inhalte</li>
+      </ul>
+    </div>
+
+    <div class="price-box">
+      <h2>EP-Club Gold</h2>
+      <div class="price-number">34,99 €</div>
+      <ul class="features">
+        <li>Alle Silver Vorteile</li>
+        <li>Premium-Zugang</li>
+        <li>Exklusive Events</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>🛒</span>
+  </div>
+
+</body>
+</html>
