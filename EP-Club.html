@@ -4,6 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>EP Club Widget</title>
+<script>
+function sendHeight() {
+  const height = document.body.scrollHeight;
+  parent.postMessage({ type: "setHeight", height: height }, "*");
+}
+window.onload = sendHeight;
+window.onresize = sendHeight;
+setInterval(sendHeight, 500);
+</script>
 
 <style>
 /* (Der komplette Stil wie vorher) */
