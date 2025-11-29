@@ -187,6 +187,12 @@ function createStar() {
 }
 setInterval(createStar, 200);
 </script>
+<script>
+window.onload = () => {
+    const height = document.body.scrollHeight;
+    parent.postMessage({ type: "resize-iframe", height }, "*");
+};
+</script>
 
 </body>
 </html>
