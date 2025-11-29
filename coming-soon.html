@@ -1,231 +1,269 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Coming Soon – EuropaCraft</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>EuropaCraft — Coming Soon</title>
 <style>
-    :root {
-        --blue: #1a4cff;
-        --blue-dark: #0a0f4b;
-        --gold: #dabb5e;
-        --gold-light: #f7e7b1;
-        --white: #ffffff;
-        --shadow: rgba(0,0,0,0.22);
-        --radius: 22px;
-    }
+:root{
+  --royal-blue: #0f2a8a;   /* tieferer Royalton */
+  --royal-blue-2: #1e44ff; /* kräftiges Royal-Blau */
+  --gold: #d9b240;
+  --gold-2: #ffd96a;
+  --ivory: #fbf6ec;
+  --card-shadow: rgba(6,10,30,0.35);
+  --radius: 20px;
+  --glass: rgba(255,255,255,0.06);
+}
 
-    * { box-sizing: border-box; }
+/* Reset / Basics */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, "Helvetica Neue", Arial, sans-serif;background:transparent;color:#0b0b0b}
+.center-wrap{display:flex;justify-content:center;padding:28px 18px;}
 
-    body {
-        margin: 0;
-        padding: 22px;
-        font-family: "Inter", Arial, sans-serif;
-        background: transparent;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+/* Main card */
+.card {
+  width:100%;
+  max-width:980px;
+  border-radius:var(--radius);
+  position:relative;
+  overflow:visible;
+  background:
+    radial-gradient(800px 250px at 10% 10%, rgba(255,240,200,0.05), transparent 6%),
+    linear-gradient(180deg, var(--royal-blue-2), var(--royal-blue));
+  padding:38px;
+  box-shadow: 0 30px 60px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+}
 
-    /* --- CARD --- */
-    .card {
-        width: 100%;
-        max-width: 920px;
-        background: var(--blue);
-        border-radius: var(--radius);
-        padding: 38px;
-        display: flex;
-        gap: 32px;
-        box-shadow: 0 16px 38px var(--shadow);
-        border: 2px solid rgba(255,255,255,0.53);
-        position: relative;
-        overflow: hidden;
-    }
+/* metallic gold inner frame */
+.card:before{
+  content:"";
+  position:absolute;inset:8px;border-radius:calc(var(--radius) - 8px);
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
 
-    /* ANIMATED GOLD STARS */
-    .star {
-        position: absolute;
-        font-size: 36px;
-        color: var(--gold);
-        opacity: 0.9;
-        animation: floatStar 6s infinite ease-in-out;
-    }
+/* decorative spotlight / vignette */
+.card .spot {
+  position:absolute; right: -120px; top: -80px; width:420px;height:420px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,240,160,0.08) 0%, rgba(255,220,100,0.03) 10%, transparent 20%);
+  filter: blur(18px); transform: rotate(-12deg); pointer-events:none;
+}
 
-    .star:nth-child(1) { top: 12px; right: 40px; animation-delay: 0s; }
-    .star:nth-child(2) { top: 60px; right: 10px; animation-delay: 1.5s; font-size: 28px; }
-    .star:nth-child(3) { top: -10px; right: 90px; animation-delay: 3s; font-size: 46px; }
+/* logo badge */
+.logo-badge{
+  width:124px;height:124px;border-radius:18px;padding:8px;
+  background: linear-gradient(135deg, var(--royal-blue-2), var(--gold));
+  display:inline-grid;place-items:center;box-shadow: 0 18px 36px rgba(0,0,0,0.36);
+  border: 2px solid rgba(255,255,255,0.06);
+  margin-bottom:20px;
+}
+.logo-badge img{ width:100%;height:100%; object-fit:contain; border-radius:12px; background:var(--ivory) }
 
-    @keyframes floatStar {
-        0%   { transform: translateY(0) rotate(0); opacity: 0.8; }
-        50%  { transform: translateY(-16px) rotate(18deg); opacity: 1; }
-        100% { transform: translateY(0) rotate(0); opacity: 0.8; }
-    }
+/* content layout */
+.row{display:flex;gap:28px;align-items:center}
+.left{flex:1;min-width:0}
+.right{width:320px;flex-shrink:0}
 
-    .left { flex: 1; min-width: 0; }
+/* texts */
+.badge-coming{
+  display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.06);
+  color:var(--gold-2); font-weight:700; border:1px solid rgba(255,255,255,0.04);
+  margin-bottom:12px;font-size:14px;
+}
+h1{color:var(--ivory); margin:0 0 12px;font-size:34px;line-height:1.02;font-weight:800; text-shadow: 0 6px 18px rgba(0,0,0,0.35)}
+.lead{color:rgba(255,255,255,0.88);font-size:16px;margin:0 0 18px;line-height:1.6}
 
-    /* --- LOGO BADGE --- */
-    .logo-badge {
-        width: 120px;
-        height: 120px;
-        border-radius: 20px;
-        overflow: hidden;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--blue), var(--gold));
-        padding: 8px;
-        box-shadow: 0 14px 32px rgba(0,0,0,0.22);
-        margin-bottom: 22px;
-    }
+/* buttons */
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-main{
+  background: linear-gradient(180deg,var(--gold),var(--gold-2));
+  color:#081224;padding:12px 20px;border-radius:14px;font-weight:800;border:none;cursor:pointer;
+  box-shadow: 0 10px 24px rgba(217,178,64,0.18);
+  text-decoration:none;
+}
+.btn-ghost{
+  background:transparent;color:var(--gold);padding:11px 18px;border-radius:14px;border:2px solid rgba(217,178,64,0.95);
+  font-weight:700;text-decoration:none;
+}
 
-    .logo-badge img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        background: var(--white);
-        border-radius: 16px;
-    }
+/* info poster */
+.poster{
+  background: linear-gradient(180deg,#fff7df,#f3e7b5); color:#111;border-radius:14px;padding:22px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12); text-align:center;border:1px solid rgba(0,0,0,0.06)
+}
+.poster h2{margin:0;font-size:44px;color:var(--royal-blue-2)}
+.poster p{margin-top:10px;color:#2c2c2c;line-height:1.5}
 
-    .coming {
-        display: inline-block;
-        background: rgba(26,76,255,0.14);
-        padding: 8px 16px;
-        border-radius: 60px;
-        color: var(--blue);
-        font-weight: 600;
-        border: 1px solid rgba(26,76,255,0.2);
-        margin-bottom: 18px;
-        font-size: 15px;
-    }
+/* animated gold stars (3) - polished glow */
+.star {
+  position:absolute; color:var(--gold);
+  filter: drop-shadow(0 6px 12px rgba(217,178,64,0.25)) blur(0.2px);
+  transform-origin:center;
+  will-change:transform,opacity;
+}
+.star svg{display:block}
 
-    h1 {
-        font-size: 34px;
-        margin: 0 0 14px;
-        font-weight: 800;
-        color: var(--blue-dark);
-        letter-spacing: -0.5px;
-    }
+/* explicit positions & varied animation */
+.star.s1{ top:18px; right:48px; transform:rotate(-12deg); animation:starFloat 6.6s ease-in-out infinite; opacity:0.95 }
+.star.s2{ top:64px; right:98px; transform:rotate(6deg); animation:starFloat 5.2s ease-in-out infinite; opacity:0.9 }
+.star.s3{ top:6px; right:160px; transform:rotate(26deg); animation:starFloat 7.4s ease-in-out infinite; opacity:0.98 }
 
-    p {
-        margin: 0 0 22px;
-        color: #303030;
-        line-height: 1.6;
-        font-size: 16px;
-    }
+@keyframes starFloat {
+  0% { transform: translateY(0) scale(1) rotate(var(--r,0deg)); opacity:.85 }
+  25%{ transform: translateY(-10px) scale(1.04) rotate(calc(var(--r,0deg) + 6deg)); opacity:1 }
+  50%{ transform: translateY(-18px) scale(1.06) rotate(calc(var(--r,0deg) - 4deg)); opacity:1 }
+  75%{ transform: translateY(-10px) scale(1.03) rotate(calc(var(--r,0deg) + 6deg)); opacity:1 }
+  100%{ transform: translateY(0) scale(1) rotate(var(--r,0deg)); opacity:.85 }
+}
 
-    .cta {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-    }
+/* responsive */
+@media (max-width:860px){
+  .row{flex-direction:column-reverse;align-items:center}
+  .right{width:100%}
+  .logo-badge{width:95px;height:95px}
+  h1{font-size:26px}
+  .card{padding:26px}
+}
 
-    .btn {
-        padding: 12px 20px;
-        border-radius: 14px;
-        background: var(--blue);
-        color: var(--white);
-        text-decoration: none;
-        font-weight: 700;
-        box-shadow: 0 10px 22px rgba(26,76,255,0.3);
-        font-size: 16px;
-    }
-
-    .ghost {
-        padding: 12px 18px;
-        border-radius: 14px;
-        border: 2px solid var(--gold);
-        color: var(--gold);
-        background: var(--white);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 16px;
-    }
-
-    .right {
-        width: 280px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .poster {
-        width: 100%;
-        background: var(--gold-light);
-        border-radius: 18px;
-        padding: 22px;
-        border: 2px solid rgba(0,0,0,0.1);
-        text-align: center;
-        box-shadow: 0 14px 30px rgba(0,0,0,0.12);
-        animation: floatPoster 6s ease-in-out infinite;
-    }
-
-    @keyframes floatPoster {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-12px); }
-        100% { transform: translateY(0); }
-    }
-
-    .poster h2 {
-        margin: 0;
-        font-size: 50px;
-        color: var(--blue-dark);
-    }
-
-    .poster p {
-        font-size: 15px;
-        color: #333;
-        margin-top: 10px;
-    }
-
-    @media (max-width: 850px) {
-        body { padding: 16px; }
-        .card { flex-direction: column; padding: 30px; }
-        .right { width: 100%; }
-    }
+/* modal styles */
+.modal-back{position:fixed;inset:0;background:rgba(3,6,20,0.45);display:none;place-items:center;padding:24px;z-index:60}
+.modal{background:#fff;border-radius:12px;padding:18px;width:100%;max-width:420px}
+.modal h3{margin:0 0 8px;color:#0b0b0b}
+.modal .row{flex-direction:column;gap:10px}
+.input{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd}
+.small{font-size:13px;color:#444;margin-top:6px}
+.close-x{position:absolute;right:14px;top:10px;cursor:pointer;color:#666}
+.success{background:#e9f7ea;border:1px solid #cdeacb;padding:10px;border-radius:8px;color:#0b6b28;margin-top:8px}
 </style>
 </head>
-
 <body>
+<div class="center-wrap">
+  <section class="card" role="region" aria-label="EuropaCraft Coming Soon">
 
-<div class="card">
+    <div class="spot" aria-hidden="true"></div>
 
-    <!-- ANIMATED GOLD STARS -->
-    <div class="star">★</div>
-    <div class="star">★</div>
-    <div class="star">★</div>
+    <!-- gold stars (SVG for crisp glow) -->
+    <div class="star s1" style="--r:-8deg" aria-hidden="true">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><filter id="g1" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/></filter></defs>
+        <path d="M12 2.5l2.6 5.3 5.9.8-4.3 4 1 6-5.2-2.9L6.8 19l1-6-4.3-4 5.9-.8L12 2.5z" fill="#d9b240"/>
+      </svg>
+    </div>
 
-    <!-- LEFT SIDE -->
-    <div class="left">
+    <div class="star s2" style="--r:12deg" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.5l2.6 5.3 5.9.8-4.3 4 1 6-5.2-2.9L6.8 19l1-6-4.3-4 5.9-.8L12 2.5z" fill="#e6c469"/>
+      </svg>
+    </div>
 
-        <!-- LOGO BADGE -->
-        <div class="logo-badge">
-            <!-- WICHTIG: DIESE URL ANPASSEN -->
-            <img src="https://github.com/Rookbourgh/rookbourgh.github.io/blob/afedbead3d4b4689b8902c7210d29c6502bd0f9a/EC-logo.png" 
-                 alt="EuropaCraft Logo">
+    <div class="star s3" style="--r:24deg" aria-hidden="true">
+      <svg width="58" height="58" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.5l2.6 5.3 5.9.8-4.3 4 1 6-5.2-2.9L6.8 19l1-6-4.3-4 5.9-.8L12 2.5z" fill="#ffd66a"/>
+      </svg>
+    </div>
+
+    <div class="row" style="align-items:center;">
+      <!-- LEFT -->
+      <div class="left">
+        <div class="logo-badge" aria-hidden="true">
+          <!-- === LOGO URL ===
+               Falls du den Dateinamen geändert hast, ersetze die URL hier.
+               Raw-URL benutzt %20 für Leerzeichen (existierender Name im Repo).
+          -->
+          <img src="https://raw.githubusercontent.com/Rookbourgh/rookbourgh.github.io/main/EC%20logo%20neu%20.png" alt="EuropaCraft Logo" />
         </div>
 
-        <div class="coming">Coming Soon</div>
+        <div class="badge-coming">Coming Soon</div>
 
         <h1>Etwas Neues entsteht</h1>
 
-        <p>Wir gestalten gerade einen neuen Bereich – modern, stilvoll und hochwertig.  
-           Schau bald wieder vorbei oder lass dich informieren!</p>
+        <p class="lead">Wir gestalten derzeit einen neuen Bereich – modern, stilvoll und hochwertig.
+           Schau bald wieder vorbei oder lass dich informieren.</p>
 
-        <div class="cta">
-            <a href="#" class="btn">Benachrichtigen</a>
-            <a href="#" class="ghost">Mehr Infos</a>
+        <div class="actions">
+          <!-- Benachrichtigen = öffnet Mail-Client mit vorausgefüllter Mail (anpassbar).
+               Change CONTACT_EMAIL below in the script if you want a different destination. -->
+          <a href="#" id="notifyBtn" class="btn-main" title="Benachrichtigen">Benachrichtigen</a>
+
+          <!-- Mehr Infos verlinkt zur Mehr-Infos-Seite (siehe mehrinfos.html). -->
+          <a href="mehrinfos.html" class="btn-ghost" title="Mehr Infos">Mehr Infos</a>
         </div>
-    </div>
+      </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="right">
-        <div class="poster">
-            <h2>⏳</h2>
-            <p>Bald ist es soweit – wir finalisieren die letzten Details.</p>
+      <!-- RIGHT -->
+      <div class="right">
+        <div class="poster" aria-hidden="true">
+          <h2>⏳</h2>
+          <p>Bald ist es soweit – wir finalisieren die letzten Details.</p>
         </div>
+      </div>
     </div>
-
+  </section>
 </div>
 
+<!-- Modal for email input -->
+<div class="modal-back" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document">
+    <span class="close-x" id="closeModal" title="Schließen">✕</span>
+    <h3>Benachrichtigen lassen</h3>
+    <p class="small">Gib hier deine E-Mail ein — du erhältst eine Nachricht, sobald wir live gehen.</p>
+
+    <div style="display:flex;gap:10px;margin-top:12px;">
+      <input id="emailInput" type="email" class="input" placeholder="deine@email.de" />
+      <button id="sendEmail" class="btn-main" style="padding:10px 14px">Senden</button>
+    </div>
+
+    <div id="note" class="small">Hinweis: Der Button öffnet dein E-Mail-Programm mit einer vorgefertigten Nachricht. Wenn du ein Server-Formular wünschst, ersetze die Funktion durch Formspree / Mailchimp / einen Webhook.</div>
+
+    <div id="okMsg" style="display:none" class="success">Danke! Das E-Mail-Fenster wurde geöffnet — sende die Mail ab, um dich anzumelden.</div>
+  </div>
+</div>
+
+<script>
+/*
+ Client-side notify flow:
+ - Opens a modal to collect email
+ - On submit, tries to open user's mail client via mailto: to CONTACT_EMAIL
+ - CONTACT_EMAIL: change to your desired receiver (e.g. kontakt@europacraft.de)
+ - This is reliable without server-side code; if you prefer server storage, integrate Formspree/Mailchimp.
+*/
+const CONTACT_EMAIL = "info@europacraft.de"; // <-- passe hier die Zieladresse an
+
+const notifyBtn = document.getElementById('notifyBtn');
+const modal = document.getElementById('modal');
+const closeModal = document.getElementById('closeModal');
+const sendEmail = document.getElementById('sendEmail');
+const emailInput = document.getElementById('emailInput');
+const okMsg = document.getElementById('okMsg');
+
+notifyBtn.addEventListener('click', (e)=>{ e.preventDefault(); modal.style.display='grid'; modal.setAttribute('aria-hidden','false'); emailInput.focus(); });
+closeModal.addEventListener('click', ()=>{ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); okMsg.style.display='none'; });
+modal.addEventListener('click', (ev)=>{ if(ev.target===modal){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); } });
+
+sendEmail.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const mail = (emailInput.value || "").trim();
+  if(!mail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){
+    emailInput.focus();
+    emailInput.style.boxShadow='0 0 0 3px rgba(217,178,64,0.18)';
+    setTimeout(()=>{ emailInput.style.boxShadow='none'; },1200);
+    return;
+  }
+
+  // prefill subject/body
+  const subject = encodeURIComponent("EuropaCraft — Benachrichtigung: Bitte informieren");
+  const body = encodeURIComponent(`Bitte benachrichtigt mich, sobald der neue Bereich live ist.\n\nE-Mail: ${mail}\nSeite: ${location.href}`);
+  // open user's mail client
+  const mailto = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  window.location.href = mailto;
+
+  // simple local success feedback (serverless)
+  okMsg.style.display='block';
+  setTimeout(()=>{ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); },900);
+});
+</script>
 </body>
 </html>
