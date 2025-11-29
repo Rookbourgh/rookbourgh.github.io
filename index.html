@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EuropaCraft – Coming Soon</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at center, #10204a 0%, #05091b 70%);
+    font-family: 'Cinzel', serif;
+    color: white;
+    overflow: hidden;
+}
+
+/* Container */
+.widget-container {
+    text-align: center;
+    padding: 50px 25px;
+    max-width: 420px;
+    margin: 100px auto 0 auto;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    border-radius: 18px;
+    background: rgba(10, 18, 40, 0.55);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+/* Logo */
+.logo {
+    width: 240px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0px 0px 18px rgba(255, 219, 64, 0.55));
+}
+
+/* Text */
+.headline {
+    font-size: 28px;
+    font-weight: 600;
+    color: #ffdc73;
+    text-shadow: 0 0 12px rgba(255, 213, 85, 0.6);
+    margin-bottom: 8px;
+}
+.subtext {
+    font-size: 17px;
+    color: #d9d9d9;
+}
+
+/* Buttons */
+.notify-btn, .submit-btn {
+    display: block;
+    width: 85%;
+    margin: 14px auto;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+.notify-btn {
+    background: linear-gradient(90deg, #9c7b20, #ffd875, #b68d30);
+    color: #000;
+}
+.notify-btn:hover {
+    transform: scale(1.07);
+}
+
+/* Modal */
+#modal-background {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
+#modal-box {
+    display: none;
+    position: fixed;
+    width: 90%;
+    max-width: 380px;
+    background: rgba(22,31,60,0.95);
+    border: 1px solid rgba(255,215,0,0.45);
+    border-radius: 12px;
+    padding: 25px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    box-shadow: 0 0 26px rgba(255,215,0,0.25);
+}
+#modal-box input {
+    width: 90%;
+    padding: 12px;
+    margin: 18px 0;
+    border-radius: 7px;
+    border: none;
+    font-size: 14px;
+}
+.submit-btn {
+    background: linear-gradient(90deg, #9c7b20, #ffd875, #b68d30);
+    color: #000;
+}
+.close-btn {
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    opacity: 0.7;
+}
+.stars div {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,220,120,0.85);
+    box-shadow: 0 0 8px rgba(255,215,80,0.9);
+}
+
+/* Mobile Anpassung */
+@media (max-width: 420px) {
+    .widget-container {
+        margin-top: 40px;
+        padding: 30px;
+    }
+    .logo {
+        width: 190px;
+    }
+    .headline {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="widget-container">
+    <img src="EC logo neu.png" class="logo" alt="EuropaCraft Logo">
+    <h1 class="headline">Etwas Großes kommt…</h1>
+    <p class="subtext">Sei einer der Ersten, die informiert werden!</p>
+
+    <button class="notify-btn" onclick="openModal()">Benachrichtigen</button>
+</div>
+
+<div class="stars"></div>
+
+<!-- Modal -->
+<div id="modal-background" onclick="closeModal()"></div>
+<div id="modal-box">
+    <h2>Benachrichtige mich</h2>
+    <p>Du erhältst eine Nachricht sobald wir starten.</p>
+
+    <form action="https://formspree.io/f/xwpapwal" method="POST">
+        <input type="email" name="email" placeholder="Deine E-Mail" required>
+        <button type="submit" class="submit-btn">Eintragen</button>
+    </form>
+
+    <span class="close-btn" onclick="closeModal()">✕</span>
+</div>
+
+
+<script>
+function openModal() {
+   document.getElementById("modal-background").style.display = "block";
+   document.getElementById("modal-box").style.display = "block";
+}
+function closeModal() {
+   document.getElementById("modal-background").style.display = "none";
+   document.getElementById("modal-box").style.display = "none";
+}
+
+const starContainer = document.querySelector('.stars');
+function createStar() {
+  const star = document.createElement('div');
+  const size = Math.random() * 3 + 2;
+  star.style.width = size + "px";
+  star.style.height = size + "px";
+  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.top = Math.random() * window.innerHeight + "px";
+  star.style.opacity = Math.random();
+
+  starContainer.appendChild(star);
+  setTimeout(() => star.remove(), 4000);
+}
+setInterval(createStar, 200);
+</script>
+
+</body>
+</html>
